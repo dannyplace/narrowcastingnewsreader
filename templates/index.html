@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="300">
+    <meta charset="UTF-8">
+    <title>Narrowcasting News</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="col-md-8 offset-md-2" id="news-item">
+        {% if news_item.image_url %}
+            <img class="img-fluid rounded mx-auto d-block" src="{{ news_item.image_url }}" alt="{{ news_item.title }}">
+        {% endif %}
+        <h1 class="mb-3">{{ news_item.title }}</h1>
+        <p class="lead">{{ news_item.description }}</p>
+    </div>
+
+    <script>
+        // Retrieve the news item from the server every 5 seconds
+        setInterval(function() {
+            fetch('/').then(function(response) {
+                return response.text();
+            }).then(function(html) {
+                // Create a new temporary div element to hold the new news item
+                var tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+
+                // Replace the old news item with the new one
+                var oldNewsItem = document.getElementById('news-item');
+                var newNewsItem = tempDiv.querySelector('#news-item');
+                oldNewsItem.parentNode.replaceChild(newNewsItem, oldNewsItem);
+            });
+        }, 10000);
+    </script>
+
+</body>
+</html>
