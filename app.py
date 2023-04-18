@@ -1,23 +1,37 @@
 import requests
 from bs4 import BeautifulSoup
+import threading
 
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# Retrieve news items from RSS feed
-url = 'https://www.nu.nl/rss/algemeen'
-response = requests.get(url)
-soup = BeautifulSoup(response.content, features='xml')
-
-items = soup.find_all('item')[:5]
-
+# Initialize the news items list
 news_items = []
-for item in items:
-    title = item.title.text
-    description = item.description.text
-    image_url = item.enclosure['url'].replace('256', '1024') if item.enclosure else None
-    news_items.append({'title': title, 'description': description, 'image_url': image_url})
+
+def fetch_rss_feed():
+    global news_items
+    
+    # Retrieve news items from RSS feed
+    url = 'https://www.nu.nl/rss/algemeen'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, features='xml')
+
+    items = soup.find_all('item')[:5]
+
+    # Update the news items list
+    news_items.clear()
+    for item in items:
+        title = item.title.text
+        description = item.description.text
+        image_url = item.enclosure['url'].replace('256', '1024') if item.enclosure else None
+        news_items.append({'title': title, 'description': description, 'image_url': image_url})
+
+    # Schedule the next fetch
+    threading.Timer(120, fetch_rss_feed).start()
+
+# Schedule the first fetch
+fetch_rss_feed()
 
 # Index of the current news item being displayed
 current_index = 0
@@ -35,4 +49,4 @@ def home():
     return render_template('index.html', news_item=news_item)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

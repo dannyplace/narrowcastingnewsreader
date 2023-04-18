@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-12">
             {% if news_item.image_url %}
-            <img class="img-fluid w-100" src="{{ news_item.image_url }}" alt="{{ news_item.title }}">
+            <img class="img-fluid w-100 h-75" src="{{ news_item.image_url }}" alt="{{ news_item.title }}">
             {% endif %}
             <h1 class="mb-3">{{ news_item.title }}</h1>
             <p class="lead">{{ news_item.description }}</p>
