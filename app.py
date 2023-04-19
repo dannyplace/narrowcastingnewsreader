@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import threading
+import re
 
 from flask import Flask, render_template
 
@@ -24,6 +25,8 @@ def fetch_rss_feed():
     for item in items:
         title = item.title.text
         description = item.description.text
+        # Strip <a> tags from description and show them as plain text
+        description = re.sub(r'<a.*?>(.*?)<\/a>', r'\1', description)
         image_url = item.enclosure['url'].replace('256', '1024') if item.enclosure else None
         news_items.append({'title': title, 'description': description, 'image_url': image_url})
 
@@ -38,7 +41,7 @@ current_index = 0
 
 @app.route('/')
 def home():
-    global current_index
+    global current_index 
 
     # Get the current news item
     news_item = news_items[current_index]
@@ -49,4 +52,4 @@ def home():
     return render_template('index.html', news_item=news_item)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)

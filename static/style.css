@@ -1,0 +1,55 @@
+p {
+    color: black;
+    font-size: calc(75% + 1vw + 1vh);
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s
+}
+
+.source {
+    color: black;
+    font-size: 10px;
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
+    -o-animation: fadeIn 5s;
+    -ms-animation: fadeIn 5s
+}
+
+
+h1 {
+    background-color: #12495d;
+    color: white;
+    font-size: calc(100% + 1vw + 1vh);
+    padding: 20px;
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -ms-animation: fadeIn 2s;
+}
+
+.img {
+    animation:img 0.5s linear;
+    -webkit-animation:img 0.5s linear;
+    width: 100vw; /* width of container */
+    height: 50vh; /* height of container */
+    object-fit: cover;
+}
+
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes img {
+    from {
+      margin-top: -100%;
+    }
+    to {
+      margin-top: 0;
+    }
+}
