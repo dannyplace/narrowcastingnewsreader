@@ -27,6 +27,7 @@ def fetch_rss_feed():
         description = item.description.text
         # Strip <a> tags from description and show them as plain text
         description = re.sub(r'<a.*?>(.*?)<\/a>', r'\1', description)
+        description = re.sub(r'<em.*?>(.*?)<\/em>', r'\1', description)
         image_url = item.enclosure['url'].replace('256', '1024') if item.enclosure else None
         news_items.append({'title': title, 'description': description, 'image_url': image_url})
 

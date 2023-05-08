@@ -1,16 +1,18 @@
 p {
     color: black;
-    font-size: calc(75% + 1vw + 1vh);
+    font-size: calc(25% + 1vw + 1vh);
+    padding-left: 20px;
+    padding-right: 20px;
     animation: fadeIn 5s;
     -webkit-animation: fadeIn 5s;
     -moz-animation: fadeIn 5s;
     -o-animation: fadeIn 5s;
-    -ms-animation: fadeIn 5s
+    -ms-animation: fadeIn 5s;
 }
 
 .source {
     color: black;
-    font-size: 10px;
+    font-size: calc(5% + 1vw + 1vh);
     animation: fadeIn 5s;
     -webkit-animation: fadeIn 5s;
     -moz-animation: fadeIn 5s;
@@ -18,25 +20,37 @@ p {
     -ms-animation: fadeIn 5s
 }
 
+.title {
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  left: auto;
+  right: auto;
+  font-size: calc(100% + 1vw + 1vh);
+  text-shadow: 2px 2px 4px #000;
+  background: linear-gradient(90deg, rgba(3,83,141,1) 0%, rgba(28,155,208,0.5) 100%);
+  color: white;
+  padding: 20px;
+  margin-bottom: 10px;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+}
 
-h1 {
-    background-color: #12495d;
-    color: white;
-    font-size: calc(100% + 1vw + 1vh);
-    padding: 20px;
-    animation: fadeIn 2s;
-    -webkit-animation: fadeIn 2s;
-    -moz-animation: fadeIn 2s;
-    -o-animation: fadeIn 2s;
-    -ms-animation: fadeIn 2s;
+.header {
+  position: relative;
 }
 
 .img {
     animation:img 0.5s linear;
     -webkit-animation:img 0.5s linear;
     width: 100vw; /* width of container */
-    height: 50vh; /* height of container */
+    height: 75vh; /* height of container */
     object-fit: cover;
+    object-position: 50% 25%;;
+
 }
 
 

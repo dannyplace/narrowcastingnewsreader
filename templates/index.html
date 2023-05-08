@@ -9,15 +9,16 @@
 </head>
 <body>
 <div class ="container-fluid" id="news-item">
-      <div class="row">
-        <div class="col-12">
+            <div class="row header">
+            <h1 class="title">{{ news_item.title }}</h1>
             {% if news_item.image_url %}
             <img class="img w-100" src="{{ news_item.image_url }}" alt="{{ news_item.title }}">
             {% endif %}
-            <h1>{{ news_item.title }}</h1>
+            </div>
+            <div class="row">
             <p>{{ news_item.description }}</p>
             <p class="source">bron: nu.nl</p1>
-        </div>
+
       </div>
     </div>
 </div>
